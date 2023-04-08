@@ -211,7 +211,7 @@ impl<'a, IO: ReadWriteSeek, TP, OCC> File<'a, IO, TP, OCC> {
         self.first_cluster
     }
 
-    fn flush(&mut self) -> Result<(), Error<IO::Error>> {
+    pub fn flush(&mut self) -> Result<(), Error<IO::Error>> {
         self.flush_dir_entry()?;
         let mut disk = self.fs.disk.borrow_mut();
         disk.flush()?;
