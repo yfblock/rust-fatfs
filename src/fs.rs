@@ -568,7 +568,7 @@ impl<IO: Read + Write + Seek, TP, OCC> FileSystem<IO, TP, OCC> {
         Ok(())
     }
 
-    fn flush_fs_info(&self) -> Result<(), Error<IO::Error>> {
+    pub fn flush_fs_info(&self) -> Result<(), Error<IO::Error>> {
         let mut fs_info = self.fs_info.borrow_mut();
         if self.fat_type == FatType::Fat32 && fs_info.dirty {
             let mut disk = self.disk.borrow_mut();
